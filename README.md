@@ -11,6 +11,14 @@ Australia (ALA)** as tools for LLM assistants (Claude Desktop, etc.).
 It's a working v1 skeleton: taxon search, counts, occurrence downloads, species
 lists, and field exploration.
 
+## Example
+
+Asking an MCP client to "search occurrences of *Ginkgo biloba* in the ALA and
+GBIF" — the assistant resolves the taxon, queries both atlases, returns a
+comparison, and then downloads the ALA records to a CSV:
+
+![galah-mcp searching Ginkgo biloba across ALA and GBIF from an MCP client](images/example-ginkgo-ala-gbif.png)
+
 ## Exposed tools
 
 | Tool                 | galah function         | Purpose                                            |
