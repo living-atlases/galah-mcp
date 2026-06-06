@@ -1,5 +1,7 @@
 # galah-mcp
 
+[![tests](https://github.com/living-atlases/galah-mcp/actions/workflows/test.yml/badge.svg)](https://github.com/living-atlases/galah-mcp/actions/workflows/test.yml)
+
 An [MCP](https://modelcontextprotocol.io) server exposing the
 [`galah`](https://galah.ala.org.au/Python/) library from the **Atlas of Living
 Australia (ALA)** as tools for LLM assistants (Claude Desktop, etc.).
