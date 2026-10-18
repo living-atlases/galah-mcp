@@ -53,7 +53,7 @@ Downloading occurrences requires an email **registered with the chosen atlas**
 export GALAH_EMAIL="you@example.com"
 export GALAH_ATLAS="Australia"     # default; or Spain (gbif.es), GBIF, Austria, etc.
 export GALAH_REASON="4"            # 4 = scientific research
-export GALAH_DOWNLOAD_DIR="./galah_downloads"
+export GALAH_DOWNLOAD_DIR="$HOME/galah-downloads"   # optional; default: ~/.local/share/galah-mcp/downloads
 ```
 
 …or at runtime by calling the `set_config` tool.

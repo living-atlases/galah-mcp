@@ -30,8 +30,14 @@ from mcp.server.fastmcp import FastMCP
 mcp = FastMCP("galah")
 
 # Directory where large downloads are stored (configurable via env var).
-DOWNLOAD_DIR = Path(os.environ.get("GALAH_DOWNLOAD_DIR", "./galah_downloads")).resolve()
-DOWNLOAD_DIR.mkdir(parents=True, exist_ok=True)
+# Defaults to a fixed per-user location instead of the current working directory:
+# MCP clients launch the server from whatever directory the session is in, so a
+# relative default scattered galah_downloads/ folders everywhere.
+_XDG_DATA_HOME = os.environ.get("XDG_DATA_HOME") or os.path.join(Path.home(), ".local", "share")
+DOWNLOAD_DIR = Path(
+    os.environ.get("GALAH_DOWNLOAD_DIR")
+    or os.path.join(_XDG_DATA_HOME, "galah-mcp", "downloads")
+).expanduser().resolve()
 
 # Threshold above which a download is saved to disk instead of returned inline.
 INLINE_ROW_LIMIT = 50
@@ -170,6 +176,7 @@ def atlas_occurrences(
 
     if save_csv or n > max_inline_rows:
         safe = "".join(c if c.isalnum() else "_" for c in taxa)[:40]
+        DOWNLOAD_DIR.mkdir(parents=True, exist_ok=True)
         path = DOWNLOAD_DIR / f"occurrences_{safe}_{n}rows.csv"
         df.to_csv(path, index=False)
         result["csv_path"] = str(path)
